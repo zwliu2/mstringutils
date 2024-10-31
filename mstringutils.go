@@ -23,8 +23,5 @@ func (s *St) ToUpperCase(s1 string) string {
 	if s1 == "" {
 		return ""
 	}
-	if strings.ToUpper(s1) == s1 {
-		return s1
-	}
 	return strings.ToUpper(s1)
 }
