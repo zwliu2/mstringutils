@@ -1,6 +1,7 @@
 package mstringutils
 
 import (
+	"fmt"
 	"strings"
 )
 
@@ -10,14 +11,20 @@ type St struct {
 }
 
 // NewSt creates a new St instance with an optional initial value.
-func NewSt(value ...string) *St {
-	if len(value) > 0 {
-		return &St{value: value[0]}
+func NewSt(value string) (*St, error) {
+	if len(value) > 1024 { // 假设最大长度为1024
+		return nil, fmt.Errorf("input string is too long")
 	}
-	return &St{value: ""}
+	return &St{value: value}, nil
 }
 
 // ToUpperCase converts the given string to upper case.
 func (s *St) ToUpperCase(s1 string) string {
+	if s1 == "" {
+		return ""
+	}
+	if strings.ToUpper(s1) == s1 {
+		return s1
+	}
 	return strings.ToUpper(s1)
 }
